@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dueños</title>
+  <title>Mascotas</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -68,37 +68,44 @@
       <div class="row align-items-center">
         <div class="col-12 hero-text-image">
           <div class="row">
-            <div class="col-lg-7 text-center text-lg-center">
+            <div class="col-lg-10 text-center text-lg-center">
 
                 <div class=" display-1 text-center">
-                  <h1>Listado de Dueños</h1>
+                  <h1>Listado de Mascotas
+                  </h1>
                 </div>
 
-                {% if dueno %}
+                {% if mascota %}
 
                 <div class="table-responsive bg-light mb-3">
                   <table id="example" class="table table-secondary display" style="width:100%" >
+
                     <thead>
                       <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Dueño</th>
                         <th>Edad</th>
+                        <th>Descripción</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
 
                     <tbody>
-                      {%for dueno in dueno %}
+                      {%for mascota in mascota %}
 
                       <tr>   
-                        <td> {{ dueno.id }} </td>
-                        <td> {{ dueno.nombre }} </td>
-                        <td> {{ dueno.edad }} </td>
+                        <td> {{ mascota.id }} </td>
+                        <td> {{ mascota.nombre_mascota }} </td>
+                        <td> {{ mascota.dueño }} </td>
+                        <td> {{ mascota.edad }} </td>
+                        <td> {{ mascota.descripcion }} </td>
                         <td>  
 
-                          <a href="editar/{{dueno.id}}" class="btn btn-warning "><i class="bi bi-pencil-square"></i></a>
-                          <a href="eliminarDueno/{{dueno.id}}" class="btn btn-danger"><i class="bi bi-trash"></i> </a>
+                          <a href="editarMascota/{{mascota.id}}" class="btn btn-warning "><i class="bi bi-pencil-square"></i></a>
+                          <a href="eliminarMascota/{{mascota.id}}" class="btn btn-danger"><i class="bi bi-trash"></i> </a>
 
+                        </td>
                         </td>
                       </tr>
 
@@ -108,11 +115,11 @@
                 </div>
                 {% else %}
                   <div class="alert alert-secondary">
-                    No hay dueños registrados 
+                    No hay mascotas registradas 
                   </div>
                   {% endif %}
                   <a href="/" class="btn btn-secondary">volver</a>
-                  <a href="agregar/" class="btn btn-success"> agregar</a>
+                  <a href="agregarMascota/" class="btn btn-success"> agregar</a>
 
             </div>
           </div>
@@ -124,7 +131,6 @@
 
 
   <main id="main">
-  </main><!-- End #main -->
   </main><!-- End #main -->
 
     <section class="section">
@@ -143,7 +149,7 @@
             <div class="feature-1 text-center">
               <!-- se muestra el total de elementos -->
               <div class="alert alert-primary">
-                <strong>el total de los elementos es: </strong> {{total.nombre__count}}
+                <strong>el total de los elementos es: </strong> {{total.nombre_mascota__count}}
               </div>
           </div>
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
@@ -164,7 +170,6 @@
 
   <!-- Template Main JS File -->
   <script src="{%static 'js/main.js'%}"></script>
-
 <!-- JQery CDN !--> 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <!-- JS DataTable !-->

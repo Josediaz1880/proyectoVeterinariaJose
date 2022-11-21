@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dueños</title>
+  <title>Mascotas</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -68,51 +68,64 @@
       <div class="row align-items-center">
         <div class="col-12 hero-text-image">
           <div class="row">
-            <div class="col-lg-7 text-center text-lg-center">
+            <div class="col-lg-12 text-center text-lg-center">
 
                 <div class=" display-1 text-center">
-                  <h1>Listado de Dueños</h1>
+                  <h1>Consultas Registradas
+                  </h1>
                 </div>
 
-                {% if dueno %}
-
-                <div class="table-responsive bg-light mb-3">
+                {% if consulta %}
+                 <div class="table-responsive bg-light mb-3">
                   <table id="example" class="table table-secondary display" style="width:100%" >
+
+                  </div>
+
                     <thead>
                       <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Edad</th>
+                        <th>Fecha Atención</th>
+                        <th>Motivo</th>
+                        <th>Diagnóstico</th>
+                        <th>Tratamiento</th>
+                        <th>Observaciones</th>
+                        <th>Valor</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
 
                     <tbody>
-                      {%for dueno in dueno %}
+                      {%for consulta in consulta %}
 
                       <tr>   
-                        <td> {{ dueno.id }} </td>
-                        <td> {{ dueno.nombre }} </td>
-                        <td> {{ dueno.edad }} </td>
+                        <td> {{ consulta.id }} </td>
+                        <td> {{ consulta.nombre_paciente }} </td>
+                        <td> {{ consulta.fecha_atencion }} </td>
+                        <td> {{ consulta.motivo }} </td>
+                        <td> {{ consulta.diagnostico }} </td>
+                        <td> {{ consulta.tratamiento }} </td>
+                        <td> {{ consulta.observaciones }} </td>
+                        <td> {{ consulta.valor }} </td>
                         <td>  
 
-                          <a href="editar/{{dueno.id}}" class="btn btn-warning "><i class="bi bi-pencil-square"></i></a>
-                          <a href="eliminarDueno/{{dueno.id}}" class="btn btn-danger"><i class="bi bi-trash"></i> </a>
+                          <a href="editarConsulta/{{consulta.id}}" class="btn btn-warning "><i class="bi bi-pencil-square"></i></a>
+                          <a href="eliminarConsulta/{{consulta.id}}" class="btn btn-danger"><i class="bi bi-trash"></i> </a>
 
                         </td>
+                        </td>
                       </tr>
-
                       {% endfor %}
                     </tbody>
                   </table>
                 </div>
                 {% else %}
                   <div class="alert alert-secondary">
-                    No hay dueños registrados 
+                    No hay consultas registradas.
                   </div>
                   {% endif %}
                   <a href="/" class="btn btn-secondary">volver</a>
-                  <a href="agregar/" class="btn btn-success"> agregar</a>
+                  <a href="agregarConsulta/" class="btn btn-success"> agregar</a>
 
             </div>
           </div>
@@ -124,7 +137,6 @@
 
 
   <main id="main">
-  </main><!-- End #main -->
   </main><!-- End #main -->
 
     <section class="section">
@@ -141,17 +153,32 @@
           </div>
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="feature-1 text-center">
+              <!-- se muestra el promedio del total de los precios -->
+              <div class="alert alert-primary">
+                <strong>El promedio de los valores es: </strong> {{promedio.valor__avg}}
+              </div>
+              <!-- se muestra la suma del total de los valors -->
+              <div class="alert alert-primary">
+                <strong>la suma de los valores es: </strong> {{suma.valor__sum}}
+              </div>
               <!-- se muestra el total de elementos -->
               <div class="alert alert-primary">
-                <strong>el total de los elementos es: </strong> {{total.nombre__count}}
+                <strong>el total de los elementos es: </strong> {{total.valor__count}}
               </div>
+              <!-- se muestra el maximo de los precios -->
+              <div class="alert alert-primary">
+                <strong>el valor más alto es: </strong> {{maximo.valor__max}}
+              </div>
+              <!-- se muestra el minimo de los precios -->
+              <div class="alert alert-primary">
+                <strong>el valor más bajo es: </strong> {{minimo.valor__min}}
+            </div>
           </div>
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         </div>
 
       </div>
     </section>
-
   <!-- ======= Footer ======= -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -164,7 +191,6 @@
 
   <!-- Template Main JS File -->
   <script src="{%static 'js/main.js'%}"></script>
-
 <!-- JQery CDN !--> 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <!-- JS DataTable !-->
